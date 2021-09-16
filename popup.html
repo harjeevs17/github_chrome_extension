@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"  style="min-width:350px;background-color: #89ABE3FF;">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>Pull Request Counter</title>
+    <style> 
+        input[type=text] {
+          width: 100%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          box-sizing: border-box;
+        }
+        .btn {
+            background-color: #5F4B8BFF;
+            border: none;
+            color: white;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            font-size: 15px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        #pullCount{
+            background-color: #FCF6F5FF;
+            padding: 10px;
+            border-radius:5px;
+        }
+        </style>
+</head>
+<body>
+    <div id="container">
+        <div id="form" style="display: none;">
+            <input type='text' id='username' placeholder='Github Username'/>
+            <input class = "btn" type='button' id='submitBtn' value='Login'/>
+        </div>
+        <div id="pullCount" style="display: none;">
+            <p id="welcomeText"></p>
+            <p id="stats"></p>
+        </div>
+        <div id="logoutForm"  style="display: none;">
+            <input class = "btn" type='button' id='logoutBtn' value='Logout'/>
+        </div>
+    </div>
+</body>
+<script src="popup.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script type="text/javascript">
+(function() {
+    emailjs.init("user_8fCHR8UMMvdJCNYX8uhVe");
+})();
+</script>
+</html>
