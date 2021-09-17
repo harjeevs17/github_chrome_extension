@@ -7,37 +7,6 @@ document.addEventListener('DOMContentLoaded',async()=>{
     pullRequestTitle = document.getElementById('pullRequestTitle');
     stats = document.getElementById('stats');
     welcomeText = document.getElementById('welcomeText');
-    const displayPullCount = async(user)=>{
-        const url = 'https://api.github.com/search/issues?q=is:open%20is:pr%20author:'+user+'';
-        const urlRepos = 'https://api.github.com/users/'+user+'/repos';
-        try{
-            const res = await fetch(url);
-            const resRepos = await fetch(urlRepos);
-
-            const data = await res.json();
-            const reposData = await resRepos.json();
-            
-            const number_of_repos = reposData.length;
-            const number_of_pr = data.total_count;
-            const pr_info = data.items;
-            pr_list = ''
-            for(ele of pr_info){
-                console.log(ele.title)
-                pr_list = pr_list + "<div class='innerDetails'><a target='_blank' href='"+ele.pull_request.html_url+"'><p class='title'>"+ele.title+"</p><p class='state'>"+ele.body+"</p></a></div>"
-            }
-            console.log(pr_list);
-            prInfoDetails.innerHTML = pr_list;
-            stats.innerHTML = "Profile";
-            repoStat.innerHTML = "Repositories:" + number_of_repos
-            welcomeText.innerHTML = "Welcome user : " + user
-            chrome.browserAction.setBadgeText({text:number_of_pr.toString()});
-            //sendEmail(number_of_pr);
-            
-        }
-        catch(err){
-            console.log("error:"+err)
-        }
-    }
     chrome.storage.local.get("username", function(user){
         console.log(user)
         if(user.username == null){
@@ -59,6 +28,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
             })    
         }
     });
+    /*Login button listener*/
     button.addEventListener("click", function() {
         const username = document.getElementById('username').value;
         console.log("value is" + username);
@@ -68,6 +38,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
         });
         buttonclickhandler(username);
     });
+    /*Logout button listener that gets triggerd when the user wants to logout . It clears the username stored and adjusts the form accordingly.*/
     logoutbutton.addEventListener("click", function() {
         chrome.storage.local.set({ "username": null }, function(){
             document.getElementById('form').setAttribute('style','display: block;');
@@ -77,7 +48,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
             chrome.browserAction.setBadgeText({text:""});
         });
     });
-    
+    /* Function to compare the dates and check if the available date is less than 7 days or not. Mail gets send accordingly. */
     const compareDates = (date)=>{
         const date1 = new Date(date);
         const date2 = new Date();
@@ -153,6 +124,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
     
 
 })
+/*Function is used to send an Email to the user */
 const sendEmail = (data)=>{
     emailjs
       .send(

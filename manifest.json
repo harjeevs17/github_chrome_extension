@@ -1,8 +1,8 @@
 {
     "manifest_version":2,
-    "name":"demo",
-    "description" : "this is for test",
-    "version" : "3.0.0",
+    "name":"GitBot",
+    "description" : "GitBot is a chrome extension that displays the total number of PRs under your name in a convenient format.",
+    "version" : "1.0.0",
     "browser_action":{
         "default_icon":"icon.png",
         "default_popup":"popup.html"
