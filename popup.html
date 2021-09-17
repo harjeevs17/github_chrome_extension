@@ -1,12 +1,55 @@
 <!DOCTYPE html>
-<html lang="en"  style="min-width:350px;background-color: #89ABE3FF;">
+<html lang="en" style="min-width:350px;">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
-    <title>Pull Request Counter</title>
-    <style> 
-        input[type=text] {
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+   body {
+  font-family: sans-serif;
+}
+    button {
+  background-color: #333; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+    .container{
+      display: grid;
+    grid-gap: 5px;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+      
+    }
+    .mainText{
+      font-size:30px;
+    }
+    .m5{
+      margin:5px;
+    }
+    .details{
+      text-align:left;
+    }
+    .title{
+      font-size:15px;
+      font-weight:600;
+    }
+    #pullRequestTitle{
+        font-weight: 600;
+        font-size: 16px;
+    }
+    #form{
+        width: 97%;
+    }
+    input[type=text] {
           width: 100%;
           padding: 12px 20px;
           margin: 8px 0;
@@ -26,27 +69,63 @@
             margin: 4px 2px;
             cursor: pointer;
         }
-        #pullCount{
-            background-color: #FCF6F5FF;
-            padding: 10px;
-            border-radius:5px;
+        .logoutBtn{
+            width: 97%;
         }
-        </style>
-</head>
+        a{
+            text-decoration: none;
+            color:black;
+            cursor: pointer;
+        }
+        .innerDetails{
+            padding: 1px 0px 1px 10px;
+            border-radius: 5px;
+        }
+        .innerDetails:hover,.innerDetails:hover *{
+            background-color: #5F4B8BFF;
+            cursor: pointer;
+            color:white
+        }
+        #welcomeText{
+            font-size: 13px;
+        }
+        .zoom {
+        padding: 10px;
+        transition: transform .2s; /* Animation */
+        height:110px;
+        width:110px;
+        margin: 0 auto;
+        }
+
+        .zoom:hover {
+         transform: scale(1.1);
+        }
+        
+  </style>
+  </head>
 <body>
-    <div id="container">
-        <div id="form" style="display: none;">
+  <div class="container">
+    <img class = "zoom" src="https://www.pngarts.com/files/8/Black-Github-Logo-PNG-Image-Background.png"/>
+    <p id="mainText" class = "mainText m5">GitBot</p>
+      <div id="form" style="display: none;">
             <input type='text' id='username' placeholder='Github Username'/>
             <input class = "btn" type='button' id='submitBtn' value='Login'/>
         </div>
         <div id="pullCount" style="display: none;">
             <p id="welcomeText"></p>
-            <p id="stats"></p>
+            <p id="pullRequestTitle"></p>
+            <div class="details" id="prInfoDetails">
+            </div>
+            <div class="actionBtns">
+            <button id="stats"></button>
+            <button id="repoStat"></button>
+            </div>
         </div>
-        <div id="logoutForm"  style="display: none;">
-            <input class = "btn" type='button' id='logoutBtn' value='Logout'/>
-        </div>
+     <div class="logoutBtn" id="logoutForm"  style="display: none;">
+        <input class = "btn" type='button' id='logoutBtn' value='Logout'/>
     </div>
+  </div>
+  
 </body>
 <script src="popup.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
